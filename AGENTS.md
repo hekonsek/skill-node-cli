@@ -5,7 +5,7 @@ This repository is an agent-agnostic skill project for opinionated Node.js CLI p
 ## Project Layout
 
 - `SKILL.md`: portable skill instructions for Codex, Claude, and other agents that support skill-style Markdown instructions.
-- `references/*.md`: imported ADRs from `../adr-node-cli/spex/adr/`. These ADRs are the source of truth for the skill guidance and should remain unchanged unless the user explicitly requests an ADR update.
+- `references/adr/**/*.md`: imported ADRs from `../adr-node-cli/spex/adr/`. These ADRs are the source of truth for the skill guidance and should remain unchanged unless the user explicitly requests an ADR update.
 - `LICENSE`: license notice copied from the source ADR project.
 
 ## Commands
@@ -19,7 +19,7 @@ This repository is an agent-agnostic skill project for opinionated Node.js CLI p
 - Verify imported ADR files still match the source repository:
 
   ```sh
-  for file in references/*.md; do cmp -s "$file" "../adr-node-cli/spex/adr/$(basename "$file")" || exit 1; done
+  find references/adr -type f -name '*.md' -print | while read -r file; do cmp -s "$file" "../adr-node-cli/spex/adr/${file#references/adr/}" || exit 1; done
   ```
 
 ## Working Rules

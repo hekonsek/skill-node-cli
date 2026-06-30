@@ -5,7 +5,7 @@ description: Opinionated guidance for creating, reviewing, and refactoring Node.
 
 # Node CLI
 
-Use this skill to apply a consistent Node.js CLI project structure and implementation style. The source of truth is the imported ADR set in `references/`; read the relevant ADRs before making architectural or dependency decisions.
+Use this skill to apply a consistent Node.js CLI project structure and implementation style. The source of truth is the imported ADR set in `references/adr/`; read the relevant ADRs before making architectural or dependency decisions.
 
 ## Workflow
 
@@ -19,13 +19,14 @@ For broad project generation or review, read all ADRs first.
 
 ## ADR Map
 
-- `references/1-use-commander-as-library-for-node-based-command-line-tools.md`: choose Commander as the default Node CLI library.
-- `references/2-separate-command-line-logic-from-core-domain-business-logic.md`: separate CLI parsing and wiring from services and domain logic.
-- `references/3-cli-should-listen-to-events-from-core-logic-via-listeners.md`: use listener ports for core-to-CLI progress, messages, and warnings when a simple return value is not enough.
-- `references/4-use-chalk-for-coloring-output.md`: use Chalk for terminal color in the presentation layer only.
-- `references/5-use-ora-as-progress-indicator.md`: use Ora for interactive progress indication with CI, non-TTY, JSON, and quiet-mode fallbacks.
-- `references/6-bootstrap-new-cli-with-a-single-version-command.md`: bootstrap new CLIs with only a `version` command until real use cases exist.
-- `references/7-use-global-logger-flag-to-configure-logging-level.md`: expose a global `--logger` flag with `silent` as the default diagnostic logging level.
+- `references/adr/1-use-commander-as-library-for-node-based-command-line-tools.md`: choose Commander as the default Node CLI library.
+- `references/adr/2-separate-command-line-logic-from-core-domain-business-logic.md`: separate CLI parsing and wiring from services and domain logic.
+- `references/adr/3-cli-should-listen-to-events-from-core-logic-via-listeners.md`: use listener ports for core-to-CLI progress, messages, and warnings when a simple return value is not enough.
+- `references/adr/4-use-chalk-for-coloring-output.md`: use Chalk for terminal color in the presentation layer only.
+- `references/adr/5-use-ora-as-progress-indicator.md`: use Ora for interactive progress indication with CI, non-TTY, JSON, and quiet-mode fallbacks.
+- `references/adr/6-bootstrap-new-cli-with-a-single-version-command.md`: bootstrap new CLIs with only a `version` command until real use cases exist.
+- `references/adr/7-use-global-logger-flag-to-configure-logging-level.md`: expose a global `--logger` flag with `silent` as the default diagnostic logging level.
+- `references/adr/security/security_1-use-execfile-instead-of-exec-and-shell-enabled-spawn-to-prevent-shell-injection.md`: use `execFile` by default and avoid shell-enabled command execution for untrusted input.
 
 ## Default Structure
 
@@ -51,4 +52,5 @@ Keep Commander, Chalk, Ora, stdout/stderr handling, TTY checks, JSON/quiet behav
 - Write structured command results to stdout when appropriate and diagnostic logs to stderr.
 - Use typed return values, typed errors, or listener interfaces to communicate from services to the CLI.
 - Use Chalk and Ora only in CLI/presentation modules, and always provide readable fallback behavior when color or spinners are unavailable.
+- Use `child_process.execFile()` by default for invoking external programs, and avoid `exec()` or shell-enabled `spawn()` unless an exception is explicitly approved and documented.
 - Add tests around services without requiring `process.argv`, Commander, TTY behavior, or console output.
