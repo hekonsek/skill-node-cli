@@ -23,6 +23,10 @@ Rules:
   `--json`, `--quiet`).
 - Commands must still provide clear final status messages when spinner is disabled.
 
+Example usage scenarios:
+- Cloning GitHub repository
+- Running long running CLI command with `execFile`  
+
 ## Consequences
 
 Pros:
