@@ -29,7 +29,7 @@ Pros:
 * ✅ Better perceived responsiveness for long-running commands.
 * ✅ Cleaner terminal UX than repeated status log lines.
 * ✅ Consistent progress behavior across commands.
-* ✅ Easy mapping from domain events to CLI feedback.
+* ✅ Explicit mapping from domain events to CLI feedback.
 
 Cons:
 * ❌ Adds a third-party runtime dependency.
