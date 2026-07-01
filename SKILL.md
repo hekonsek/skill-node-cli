@@ -1,6 +1,16 @@
 ---
 name: skill-node-cli
-description: Opinionated guidance for creating, reviewing, and refactoring Node.js and TypeScript command-line interface projects. Use when working on Node CLI project structure, Commander-based command definitions, separation of CLI adapters from core/domain logic, CLI event listeners, terminal color/progress output, bootstrap command surface, or diagnostic logging flags.
+description: |
+  Opinionated guidance for creating, reviewing, and refactoring Node.js and TypeScript command-line interface projects.
+  
+  Use this skill when working with: 
+    - Working on Node CLI project structure.
+    - Working with CLI UI components like spinners, progress bars, and colorized output. 
+    - Working with commander-based command definitions.
+    - CLI event listeners.
+    - Diagnostic logging flags.
+  
+  This project focuses on CLI-specific aspects of Node.js. For generic Node guidance use skill-node.
 ---
 
 # Node CLI
@@ -46,7 +56,6 @@ Keep Commander, Chalk, Ora, stdout/stderr handling, TTY checks, JSON/quiet behav
 
 ## Implementation Rules
 
-- Use Commander for commands, subcommands, options, and help output by default.
 - Start a new CLI with a single `version` command that reads the package version.
 - Put diagnostic logging behind a global `--logger <level>` option and default it to `silent`.
 - Write structured command results to stdout when appropriate and diagnostic logs to stderr.
